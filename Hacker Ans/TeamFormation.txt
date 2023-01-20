@@ -1,0 +1,29 @@
+public static int countTeams(List<Integer> skills, int minPlayers, int minLevel, int maxLevel) {
+		if (skills.size() != 0) {
+			
+			List<Integer> filteredSkills = skills.stream().filter(rating -> (rating >= minLevel && rating <= maxLevel)).collect(Collectors.toList());
+			
+			if (filteredSkills.size() > minPlayers) {
+				int count = 1;
+				for (int i = minPlayers; i < filteredSkills.size(); i++) {
+					BigInteger n = fact(i);
+					BigInteger n_r = fact(filteredSkills.size()-i);
+					BigInteger value = fact(filteredSkills.size()).divide(n.multiply(n_r));
+					count += value.intValue();
+				}
+				return count;
+			}
+			return filteredSkills.size() == minPlayers ? 1 : 0;
+		} else {
+			return 0;
+		}
+
+}
+
+static BigInteger fact(int n) {
+		BigInteger factorial = BigInteger.ONE;
+		for(int i=n; i>0; i--) {
+			factorial = factorial.multiply(BigInteger.valueOf(i));
+		}
+		return factorial;
+}

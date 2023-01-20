@@ -1,0 +1,14 @@
+public static long playlist(List<Integer> songs) {
+
+		Map<Integer, Integer> map = new HashMap<>();
+		long count = 0;
+		for (int t : songs) {
+			int searchTime = 60 - t % 60 == 60 ? 0 : 60 - t % 60;
+			if (map.containsKey((searchTime) % 60)) {
+				count += map.get(searchTime % 60);
+			}
+			map.put(t % 60, map.getOrDefault(t % 60, 0) + 1);
+		}
+		return count;
+	
+}

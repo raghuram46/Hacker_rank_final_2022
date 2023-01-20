@@ -1,0 +1,10 @@
+public static long doubleSize(List<Integer> arr, long num) {
+		Collections.sort(arr);
+		for (int i = 0; i < arr.size(); i++) {
+			if(arr.get(i) == num) {
+				num = num*2;
+			}
+		}
+		
+		return num;
+}
